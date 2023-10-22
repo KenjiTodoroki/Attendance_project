@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<title>社員詳細</title>
+	<link rel="stylesheet" th:href="@{/css/employees.css}" href="../static/css/employees.css">
+</head>
+
+<body>
+	<h1>社員詳細</h1>
+	<h2 th:each="employee : ${employee}" th:text="${employee.name}"></h2>
+	<form action="#" method="get">
+		<button type="submit">出勤</button>
+		<button type="submit">休憩開始</button>
+		<button type="submit">休憩終了</button>
+		<button type="submit">退勤</button>
+	</form>
+	<table>
+		<tr>
+			<th>出勤日時</th>
+			<th>休憩開始日時</th>
+			<th>休憩終了日時</th>
+			<th>退勤日時</th>
+		</tr>
+		<tr class="attendance__container">
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+	<form th:action="@{/employeesList}" method="get">
+		<button type="submit">社員一覧へ</button>
+	</form>
+</body>
+
+</html>
