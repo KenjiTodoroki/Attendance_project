@@ -2,6 +2,8 @@ package com.example.demo.attendance.repository;
 
 import java.io.IOException;
 
+import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
@@ -48,23 +50,6 @@ public class AttendanceAPIRepository {
 		return employees;
 	}
 
-	public Clock[] getClockList() throws IOException {
-
-		String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/clock";
-
-		RestTemplate rest = new RestTemplate();
-
-		ResponseEntity<String> response = rest.getForEntity(url, String.class);
-
-		String json = response.getBody();
-
-		ObjectMapper mapper = new ObjectMapper();
-
-		Clock[] clockList = mapper.readValue(json, Clock[].class);
-
-		return clockList;
-	}
-
 	public Clock[] getClock(int index) throws IOException {
 
 		String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/clock?employeeId="
@@ -81,5 +66,50 @@ public class AttendanceAPIRepository {
 		Clock[] clock = mapper.readValue(json, Clock[].class);
 
 		return clock;
+	}
+
+	public void postPerson(String name, String hometown, String joiningMonth) throws IOException {
+
+		String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/employee";
+
+		String jsonData = "{"
+				+ "\"body\": \"{"
+				+ "\\\"name\\\":\\\"" + name + "\\\","
+				+ "\\\"hometown\\\":\\\"" + hometown + "\\\","
+				+ "\\\"joining_month\\\":\\\"" + joiningMonth + "\\\""
+				+ "}\""
+				+ "}";
+
+		//リクエスト情報の作成
+		RequestEntity<String> request = RequestEntity.post(url).contentType(MediaType.APPLICATION_JSON).body(jsonData);
+
+		//リクエストの送信
+		RestTemplate restTemplate = new RestTemplate();
+
+		ResponseEntity<String> response = restTemplate.exchange(request, String.class);
+	}
+
+	public void postClock(String employeeId, String clockIn, String breakStart, String breakEnd, String clockOut)
+			throws IOException {
+
+		String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/clock";
+
+		String jsonData = "{"
+				+ "\"body\": \"{"
+				+ "\\\"employeeId\\\":\\\"" + employeeId + "\\\","
+				+ "\\\"clock_in\\\":\\\"" + clockIn + "\\\","
+				+ "\\\"break_start\\\":\\\"" + breakStart + "\\\","
+				+ "\\\"break_end\\\":\\\"" + breakEnd + "\\\""
+				+ "\\\"clock_out\\\":\\\"" + clockOut + "\\\""
+				+ "}\""
+				+ "}";
+
+		//リクエスト情報の作成
+		RequestEntity<String> request = RequestEntity.post(url).contentType(MediaType.APPLICATION_JSON).body(jsonData);
+
+		//リクエストの送信
+		RestTemplate restTemplate = new RestTemplate();
+
+		ResponseEntity<String> response = restTemplate.exchange(request, String.class);
 	}
 }

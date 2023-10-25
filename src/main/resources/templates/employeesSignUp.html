@@ -9,22 +9,25 @@
 
 <body>
 	<h1>社員新規登録</h1>
-	<form action="employeesList" method="get">
+	<form th:action="@{/employeesList}" method="post">
 		<div class="signUp__container">
 			<p class="signUp__containerTitle">氏名</p>
 			<input type="text" name="name" placeholder="山田 太郎">
 		</div>
 		<div class="signUp__container">
 			<p class="signUp__containerTitle">出身地</p>
-			<input type="text" name="place" list="prefecture" placeholder="都道府県を選択またはテキストを入力してください">
+			<input type="text" name="hometown" list="prefecture" placeholder="都道府県を選択またはテキストを入力してください">
 		</div>
 		<div class="signUp__container">
 			<p class="signUp__containerTitle">入社月</p>
-			<input type="month" name="date">
+			<input type="date" name="joiningMonth">
 		</div>
-		<button type="submit" formmethod="post">登録する</button><br>
+		<button type="submit">登録する</button><br>
+	</form>
+	<form th:action="@{/employeesList}" method="get">
 		<button type="submit">社員一覧へ</button>
 	</form>
+	<p class="signUp__text"></p>
 
 	<datalist id="prefecture">
 		<option value="北海道">北海道</option>

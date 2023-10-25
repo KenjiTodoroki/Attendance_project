@@ -11,7 +11,7 @@ public class Clock {
 	private int id;
 
 	@JsonProperty("employee_id")
-	private String employeeId;
+	private int employeeId;
 
 	@JsonProperty("clock_in")
 	private String clockIn;

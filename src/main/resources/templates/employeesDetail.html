@@ -9,12 +9,13 @@
 
 <body>
 	<h1>社員詳細</h1>
-	<h2 th:each="employee : ${employee}" th:text="${employee.name}"></h2>
-	<form action="#" method="get">
-		<button type="submit">出勤</button>
-		<button type="submit">休憩開始</button>
-		<button type="submit">休憩終了</button>
-		<button type="submit">退勤</button>
+	<h2 th:each="employee : ${employeeId}" th:text="${employee.name}"></h2>
+	<form action="employeesAttend" method="post">
+		<input type="hidden" name="employeeId">
+		<button type="submit" name="clockIn">出勤</button>
+		<button type="submit" name="breakStart">休憩開始</button>
+		<button type="submit" name="breakEnd">休憩終了</button>
+		<button type="submit" name="clockOut">退勤</button>
 	</form>
 	<table>
 		<tr>
@@ -23,11 +24,11 @@
 			<th>休憩終了日時</th>
 			<th>退勤日時</th>
 		</tr>
-		<tr class="attendance__container">
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+		<tr id="clickTimes" class="attendance__container" th:each="clock : ${clock}">
+			<td th:text="${clock.clockIn}"></td>
+			<td th:text="${clock.clockOut}"></td>
+			<td th:text="${clock.breakStart}"></td>
+			<td th:text="${clock.breakEnd}"></td>
 		</tr>
 	</table>
 	<form th:action="@{/employeesList}" method="get">

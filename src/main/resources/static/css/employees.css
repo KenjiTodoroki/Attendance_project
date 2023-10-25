@@ -3,11 +3,6 @@ table, tr, th, td {
 	border: 1px solid;
 }
 
-/* employeesDetails */
-.attendance__container {
-	height: 28px;
-}
-
 /* employeesSignUp */
 .signUp__containerTitle {
 	display: inline-block;
