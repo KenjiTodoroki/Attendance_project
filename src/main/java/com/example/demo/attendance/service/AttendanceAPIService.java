@@ -26,35 +26,55 @@ public class AttendanceAPIService {
 
 		return Arrays.asList(employeesList);
 	}
-	
+
 	public List<Employees> getEmployees(int index) throws IOException {
 		Employees[] employees = attendanceAPIRepository.getEmployees(index);
-		
+
 		return Arrays.asList(employees);
 	}
-	
+
 	public List<Clock> getClock(int index) throws IOException {
 		Clock[] clock = attendanceAPIRepository.getClock(index);
-		
+
 		return Arrays.asList(clock);
 	}
-	
+
 	public void postPerson(String name, String hometown, String joiningMonth) throws IOException {
 
 		attendanceAPIRepository.postPerson(name, hometown, joiningMonth);
 	}
-	
-	public void postClock(String employeeId, String clockIn, String breakStart, String breakEnd, String clockOut) throws IOException {
-				
+
+	public void postClock(String employeeId, String attendButton) throws IOException {
+
 		Date now = new Date();
-		
+
 		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-				
-		clockIn = simpleDate.format(now);
-		breakStart = simpleDate.format(now);
-		breakEnd = simpleDate.format(now);
-		clockOut = simpleDate.format(now);
-				
+
+		String attendDate = simpleDate.format(now);
+
+		String clockIn = "";
+		String breakStart = "";
+		String breakEnd = "";
+		String clockOut = "";
+
+		if (attendButton == "clockIn") {
+
+			clockIn = attendDate;
+
+		} else if (attendButton == "breakStart") {
+
+			breakStart = attendDate;
+
+		} else if (attendButton == "breakEnd") {
+
+			breakEnd = attendDate;
+
+		} else if (attendButton == "clockOut") {
+
+			clockOut = attendDate;
+
+		}
+
 		attendanceAPIRepository.postClock(employeeId, clockIn, breakStart, breakEnd, clockOut);
 	}
 }

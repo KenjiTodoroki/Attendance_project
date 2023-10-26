@@ -25,7 +25,7 @@
 				<td th:text="${employee.hometown}"></td>
 				<td th:text="${employee.joiningMonth}"></td>
 				<td>
-					<form th:action="@{'employeesDetail/' + ${employee.id}}" method="get">
+					<form th:action="@{'employeesDetail/' + ${employee.id}}" method="post">
 						<button type="submit">詳細</button>
 					</form>
 				</td>

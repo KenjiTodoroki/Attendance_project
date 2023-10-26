@@ -34,19 +34,19 @@ public class AttendanceAPIController {
 	}
 
 	@GetMapping("/employeesSignUp")
-	public String doPost(Model model) throws IOException {
+	public String getSignUp(Model model) throws IOException {
 
 		return "employeesSignUp";
 	}
 
-	@GetMapping("/employeesDetail/{EmployeeId}")
+	@PostMapping("/employeesDetail/{EmployeeId}")
 	public String getEmployeeDetail(@PathVariable int EmployeeId, Model model)
 			throws IOException {
 
-		List<Employees> employeesList = attendanceAPIService.getEmployees(EmployeeId);
+		List<Employees> employeeId = attendanceAPIService.getEmployees(EmployeeId);
 		List<Clock> clock = attendanceAPIService.getClock(EmployeeId);
 
-		model.addAttribute("employeeId", employeesList.get(0));
+		model.addAttribute("employeeId", employeeId);
 		model.addAttribute("clock", clock);
 
 		return "employeesDetail";
@@ -62,11 +62,10 @@ public class AttendanceAPIController {
 	}
 
 	@PostMapping("/employeesAttend")
-	public String postClock(@RequestParam String employeeId, @RequestParam String clockIn, @RequestParam String breakStart,
-			@RequestParam String breakEnd, @RequestParam String clockOut, Model model) throws IOException {
+	public String postClock(@RequestParam String employeeId, @RequestParam String attendButton, Model model) throws IOException {
 		
-		attendanceAPIService.postClock(employeeId, clockIn, breakStart, breakEnd, clockOut);
+		attendanceAPIService.postClock(employeeId, attendButton);
 
-		return "redirect:/employeesDetail";
+		return "redirect:/employeesList";
 	}
 }
