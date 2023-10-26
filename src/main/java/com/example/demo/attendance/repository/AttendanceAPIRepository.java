@@ -99,7 +99,7 @@ public class AttendanceAPIRepository {
 				+ "\\\"employeeId\\\":\\\"" + employeeId + "\\\","
 				+ "\\\"clock_in\\\":\\\"" + clockIn + "\\\","
 				+ "\\\"break_start\\\":\\\"" + breakStart + "\\\","
-				+ "\\\"break_end\\\":\\\"" + breakEnd + "\\\""
+				+ "\\\"break_end\\\":\\\"" + breakEnd + "\\\","
 				+ "\\\"clock_out\\\":\\\"" + clockOut + "\\\""
 				+ "}\""
 				+ "}";
