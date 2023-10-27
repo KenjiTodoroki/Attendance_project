@@ -39,7 +39,7 @@ public class AttendanceAPIController {
 		return "employeesSignUp";
 	}
 
-	@PostMapping("/employeesDetail/{EmployeeId}")
+	@GetMapping("/employeesDetail/{EmployeeId}")
 	public String getEmployeeDetail(@PathVariable int EmployeeId, Model model)
 			throws IOException {
 
@@ -55,15 +55,16 @@ public class AttendanceAPIController {
 	@PostMapping("/employeesList")
 	public String postPerson(@RequestParam String name, @RequestParam String hometown,
 			@RequestParam String joiningMonth, Model model) throws IOException {
-		
+
 		attendanceAPIService.postPerson(name, hometown, joiningMonth);
-		
+
 		return "redirect:/employeesList";
 	}
 
 	@PostMapping("/employeesAttend")
-	public String postClock(@RequestParam String employeeId, @RequestParam String attendButton, Model model) throws IOException {
-		
+	public String postClock(@RequestParam String employeeId, @RequestParam String attendButton, Model model)
+			throws IOException {
+
 		attendanceAPIService.postClock(employeeId, attendButton);
 
 		return "redirect:/employeesList";

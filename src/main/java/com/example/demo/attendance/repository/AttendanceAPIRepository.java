@@ -96,7 +96,7 @@ public class AttendanceAPIRepository {
 
 		String jsonData = "{"
 				+ "\"body\": \"{"
-				+ "\\\"employeeId\\\":\\\"" + employeeId + "\\\","
+				+ "\\\"employee_id\\\":\\\"" + employeeId + "\\\","
 				+ "\\\"clock_in\\\":\\\"" + clockIn + "\\\","
 				+ "\\\"break_start\\\":\\\"" + breakStart + "\\\","
 				+ "\\\"break_end\\\":\\\"" + breakEnd + "\\\","

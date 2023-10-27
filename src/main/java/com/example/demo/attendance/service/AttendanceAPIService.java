@@ -48,31 +48,31 @@ public class AttendanceAPIService {
 
 		Date now = new Date();
 
-		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-		String attendDate = simpleDate.format(now);
+		String currentTime = simpleDate.format(now);
 
 		String clockIn = "";
 		String breakStart = "";
 		String breakEnd = "";
 		String clockOut = "";
 
-		if (attendButton == "clockIn") {
+		switch (attendButton) {
+		case "clockIn":
+			clockIn = currentTime;
+			break;
 
-			clockIn = attendDate;
+		case "breakStart":
+			breakStart = currentTime;
+			break;
 
-		} else if (attendButton == "breakStart") {
+		case "breakEnd":
+			breakEnd = currentTime;
+			break;
 
-			breakStart = attendDate;
-
-		} else if (attendButton == "breakEnd") {
-
-			breakEnd = attendDate;
-
-		} else if (attendButton == "clockOut") {
-
-			clockOut = attendDate;
-
+		case "clockOut":
+			clockOut = currentTime;
+			break;
 		}
 
 		attendanceAPIRepository.postClock(employeeId, clockIn, breakStart, breakEnd, clockOut);
