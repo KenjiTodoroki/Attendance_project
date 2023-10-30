@@ -39,14 +39,14 @@ public class AttendanceAPIController {
 		return "employeesSignUp";
 	}
 
-	@GetMapping("/employeesDetail/{EmployeeId}")
-	public String getEmployeeDetail(@PathVariable int EmployeeId, Model model)
+	@GetMapping("/employeesDetail/{employeeId}")
+	public String getEmployeeDetail(@PathVariable int employeeId, Model model)
 			throws IOException {
 
-		List<Employees> employeeId = attendanceAPIService.getEmployees(EmployeeId);
-		List<Clock> clock = attendanceAPIService.getClock(EmployeeId);
+		List<Employees> employees = attendanceAPIService.getEmployees(employeeId);
+		List<Clock> clock = attendanceAPIService.getClock(employeeId);
 
-		model.addAttribute("employeeId", employeeId);
+		model.addAttribute("employees", employees);
 		model.addAttribute("clock", clock);
 
 		return "employeesDetail";

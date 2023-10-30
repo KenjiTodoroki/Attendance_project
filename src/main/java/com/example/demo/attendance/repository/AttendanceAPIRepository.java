@@ -32,10 +32,10 @@ public class AttendanceAPIRepository {
 		return employeesList;
 	}
 
-	public Employees[] getEmployees(int index) throws IOException {
+	public Employees[] getEmployees(int employeeId) throws IOException {
 
 		String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/employee?id="
-				+ String.valueOf(index);
+				+ String.valueOf(employeeId);
 
 		RestTemplate rest = new RestTemplate();
 
@@ -50,10 +50,10 @@ public class AttendanceAPIRepository {
 		return employees;
 	}
 
-	public Clock[] getClock(int index) throws IOException {
+	public Clock[] getClock(int employeeId) throws IOException {
 
 		String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/clock?employeeId="
-				+ String.valueOf(index);
+				+ String.valueOf(employeeId);
 
 		RestTemplate rest = new RestTemplate();
 
@@ -86,7 +86,7 @@ public class AttendanceAPIRepository {
 		//リクエストの送信
 		RestTemplate restTemplate = new RestTemplate();
 
-		ResponseEntity<String> response = restTemplate.exchange(request, String.class);
+		restTemplate.exchange(request, String.class);
 	}
 
 	public void postClock(String employeeId, String clockIn, String breakStart, String breakEnd, String clockOut)
@@ -110,6 +110,6 @@ public class AttendanceAPIRepository {
 		//リクエストの送信
 		RestTemplate restTemplate = new RestTemplate();
 
-		ResponseEntity<String> response = restTemplate.exchange(request, String.class);
+		restTemplate.exchange(request, String.class);
 	}
 }

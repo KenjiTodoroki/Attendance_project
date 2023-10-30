@@ -8,7 +8,7 @@
 </head>
 
 <body>
-	<form th:action="@{/employeesAttend}" method="post" th:each="employee : ${employeeId}">
+	<form th:action="@{/employeesAttend}" method="post" th:each="employee : ${employees}">
 		<h1>社員詳細</h1>
 		<h2 th:text="${employee.name}"></h2>
 		<input type="hidden" name="employeeId" th:value="${employee.id}">

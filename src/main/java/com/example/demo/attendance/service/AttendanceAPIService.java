@@ -27,14 +27,14 @@ public class AttendanceAPIService {
 		return Arrays.asList(employeesList);
 	}
 
-	public List<Employees> getEmployees(int index) throws IOException {
-		Employees[] employees = attendanceAPIRepository.getEmployees(index);
+	public List<Employees> getEmployees(int employeeId) throws IOException {
+		Employees[] employees = attendanceAPIRepository.getEmployees(employeeId);
 
 		return Arrays.asList(employees);
 	}
 
-	public List<Clock> getClock(int index) throws IOException {
-		Clock[] clock = attendanceAPIRepository.getClock(index);
+	public List<Clock> getClock(int employeeId) throws IOException {
+		Clock[] clock = attendanceAPIRepository.getClock(employeeId);
 
 		return Arrays.asList(clock);
 	}
